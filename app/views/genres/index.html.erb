@@ -1,0 +1,9 @@
+<section class="container">
+    <h1>Gêneros</h1>
+
+    <ul class="section-grid">
+        <% @genres.each do |genre| %>
+            <li class="box-info"><%= link_to genre.name, genre_path(genre.id) %></li>
+        <% end %>
+    </ul>
+</section>

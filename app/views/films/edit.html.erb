@@ -1,0 +1,73 @@
+<section class="container">
+    <h1>Cadastrar novo filme</h1>
+    <% if flash[:notice] %>
+        <div style="margin: 16px 0px; color: red">
+            <%= flash[:notice] %>
+        </div>
+    <% end %>
+    <%= form_for @film do |f| %>
+        <div class="flex-container input-wrapper">
+            <%= f.label :title, 'Título: ' %>
+            <%= f.text_field :title %>
+        </div>
+        <div class="flex-container input-wrapper">
+            <%= f.label 'Poster: ' %>
+            <div class="flex-container file-btn-wrapper">
+                <%= f.label :picture, 'Carregar poster', class:"file-btn" %>
+                <%= f.file_field :picture %>
+            </div>
+        </div>
+        <div class="flex-container input-wrapper">
+            <%= f.label :year_published, 'Ano de lançamento: ' %>
+            <%= f.number_field :year_published %>
+        </div>
+        <div class="flex-container input-wrapper">
+            <%= f.label :duration, 'Duração(minutos): ' %>
+            <%= f.number_field :duration %>
+        </div>
+        <div class="flex-container input-wrapper">
+            <%= f.label :country, 'País de origem: ' %>
+            <%= f.text_field :country %>
+        </div>
+        <div class="flex-container input-wrapper">
+            <%= f.label :synopsis, 'Sinopse: ' %>
+            <%= f.text_area :synopsis %>
+        </div>
+        <div class="flex-container input-wrapper">
+            <%= f.label :genre_id, 'Gênero: ' %>
+            <%= f.select :genre_id, @select_content_genre %>
+        </div>
+        <div class="flex-container input-wrapper">
+            <%= f.label :director_id, 'Diretor: ' %>
+            <%= f.select :director_id, @select_content_director %>
+        </div>
+        <div class="flex-container input-wrapper">
+            <%= f.label :released, 'Lançado:' %>
+            <div class="flex-container input-wrapper-radio">
+                <% if @film.released %>
+                    <%= radio_button_tag(:released, true, checked=true) %>
+                    <%= f.label :released, 'Sim' %>
+                    <%= radio_button_tag(:released, false) %>
+                    <%= f.label :released, 'Não' %>
+                <% else %>
+                    <%= radio_button_tag(:released, true) %>
+                    <%= f.label :released, 'Sim' %>
+                    <%= radio_button_tag(:released, false, checked=true) %>
+                    <%= f.label :released, 'Não' %>
+                <% end %>
+            </div>
+        </div>
+        <div class="flex-container input-wrapper">
+            <%= f.label :status, 'Rascunho: ' %>
+            <div class="flex-container input-wrapper-checkbox">
+                <% if @film.status == "draft" %>
+                    <%= check_box_tag(:status,value=0,checked=true) %>
+                <% else %>
+                    <%= check_box_tag(:status,value=0,checked=false) %>
+                <% end %>
+                <%= label :status, 'Marcar como rascunho' %>
+            </div>
+        </div>
+        <%= f.submit 'Cadastrar' %>
+    <% end %>
+</section>

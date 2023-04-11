@@ -1,0 +1,46 @@
+<section class="container">
+    <h1>Home</h1>
+    <div class="flex-container flex-column">
+        <h2>Filmes em destaque</h2>
+        <ul class="section-grid">
+            <% @films.each do |film|%>
+                <li class="box">
+                    <a href=<%= film_path(film.id)%>>
+                        <% if !film.poster_photo.file.nil? %>
+                            <%= image_tag film.poster_photo.url %>
+                        <% else %>
+                            <%= image_tag image_path("image-not-found.png") %>
+                        <% end %>
+                        <%= link_to film.title, film_path(film.id) %>
+                        <p>Lançamento: <%= film.year_published %></p>
+                    </a>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+    <div class="flex-container flex-column">
+        <h2>Gêneros</h2>
+        <ul class="section-grid">
+            <% @genres.each do |genre| %>
+                <li class="box-info"><%= link_to genre.name, genre_path(genre.id) %></li>
+            <% end %>
+        </ul>
+    </div>
+    <div class="flex-container flex-column">
+        <h2>Diretores em destaque</h2>
+        <ul class="section-grid">
+            <% @directors.each do |director| %>
+                <li class="box">
+                    <a href=<%= director_path(director.id) %>>
+                        <% if !director.photo.file.nil? %>
+                            <%= image_tag director.photo.url %>
+                        <% else %>
+                            <%= image_tag image_path("image-not-found.png") %>
+                        <% end %>
+                        <%= link_to director.name, director_path(director.id) %>
+                    </a>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+</section>

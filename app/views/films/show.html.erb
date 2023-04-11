@@ -1,0 +1,29 @@
+<section class="container">
+    <h1>
+        <%= @film.title %>
+        <% if @film.status == "draft"%>
+            (Rascunho)
+        <% end %>
+    </h1>
+    <div class="content">
+        <% if !@film.poster_photo.file.nil? %>
+            <%= image_tag @film.poster_photo.url %>
+        <% else %>
+            <%= image_tag image_path("image-not-found.png") %>
+        <% end %>
+        <p><span>Ano de lançamento:</span> <%= @film.year_published %></p>
+        <p><span>Diretor:</span> <%= @director_name %>
+        <p><span>País:</span> <%= @film.country %></p>
+        <p><span>Gênero:</span> <%= @genre_name %></p>
+        <p><span>Duração:</span> <%= @film.duration %> minutos</p>
+        <p><span>Sinopse:</span> <%= @film.synopsis %></p>
+    </div>
+    <div class="links-wrapper">
+        <div class="flex-container back-button">
+            <%= link_to "Voltar", root_path %>
+        </div>
+        <div class="flex-container edit-button">
+            <%= link_to "Editar", edit_film_path(@film.id) %>
+        </div>
+    </div>
+</section>

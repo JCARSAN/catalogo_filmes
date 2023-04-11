@@ -1,0 +1,24 @@
+<section class="container">
+    <h1><%= @genre.name %></h1>
+    <ul class="section-grid">
+        <% @films.each do |film|%>
+            <li class="box">
+                <% if !film.poster_photo.file.nil? %>
+                        <%= image_tag film.poster_photo.url %>
+                    <% else %>
+                        <%= image_tag image_path("image-not-found.png") %>
+                    <% end %>
+                <%= link_to film.title, film_path(film.id) %>
+                <p>Lançamento: <%= film.year_published %></p>
+            </li>
+        <% end %>
+    </ul>
+    <div class="links-wrapper">
+        <div class="flex-container back-button">
+            <%= link_to "Home", root_path %>
+        </div>
+        <div class="flex-container edit-button">
+            <%= link_to "Editar Gênero", edit_genre_path(@genre.id) %>
+        </div>
+    </div>
+</section>

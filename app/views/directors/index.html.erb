@@ -1,0 +1,25 @@
+<section class="container">
+    <h1>Diretores</h1>
+    <ul class="section-grid">
+        <% @directors.each do |director| %>
+            <li class="box">
+                <a href=<%= director_path(director.id) %>>
+                    <% if !director.photo.file.nil? %>
+                        <%= image_tag director.photo.url %>
+                    <% else %>
+                        <%= image_tag image_path("image-not-found.png") %>
+                    <% end %>
+                    <%= link_to director.name, director_path(director.id) %>
+                </a>
+            </li>
+        <% end %>
+    </ul>
+    <div class="links-wrapper">
+        <div class="flex-container back-button">
+            <%= link_to "Home", root_path %>
+        </div>
+        <div class="flex-container edit-button">
+            <%= link_to "Cadastrar diretor", new_director_path %>
+        </div>
+    </div>
+</section>

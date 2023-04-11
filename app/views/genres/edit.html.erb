@@ -1,0 +1,14 @@
+<section class="container">
+    <h1>Editar gênero</h1>
+    <% if flash[:notice] %>
+        <div style="margin: 16px 0px; color: red">
+            <%= flash[:notice] %>
+        </div>
+    <% end %>
+    <%= form_for @genre do |f| %>
+        <%= f.label :name, 'Nome do gênero: ' %>
+        <%= f.text_field :name %>
+        <br/>
+        <%= f.submit 'Cadastrar' %>
+    <% end %>
+</section>
